@@ -60,7 +60,7 @@ TAIL RECURSIVE FUNCTION
 
 SYARAT
 
-- Tambahkan tailrec di functionnya
+- Tambahkan "tailrec" di functionnya
 - Saat memanggil function dirinya sendiri, hanya boleh memanggil function
   dirinya sendiri, tanpa embel-embel operasi dengan data lain
         - Contohnya, untuk operasi factorialRecursive yang sudah kita buat sebelumnya
@@ -68,4 +68,107 @@ SYARAT
                 - else -> value * factorialRecursive(value - 1)
 
 
+============= KODE ==================
+
+tailrec fun display(value: Int){
+    println(value)
+    if(value > 0){
+        display(value - 1)      // hanya memanggil functionnya sendiri . tidak boleh
+                                // display(value - 1) + 2
+    }
+}
+
+====================================
+
+tailrec fun factorialTail(value: Int, total: Int = 1): Int{
+    return when(value){
+        1 -> total
+        else -> factorialTail(value -1, total * value)
+    }
+}
+
+
+/*
+    Tail Recursive Factorial
+
+    factorialTail(5, 1)
+    factorialTail(4, 5)         // langsung diproses. tidak perlu nunggu spt recursive function biasa
+    factorialTail(3, 20)
+    factorialTail(2, 60)
+    factorialTail(1, 120)
+    120
+
  */
+
+ */
+
+
+fun main() {
+
+/*
+    ERROR
+
+    Karena ini menggunakan Recursive Function biasa. tidak bisa terlalu dalam (10_000)
+
+    fun display(value: Int){
+        println("Recursive $value")
+        if (value > 0){
+            display(value - 1)
+        }
+    }
+
+    display(10000)
+
+ */
+
+    // SUKSES
+
+    tailrec fun display(value: Int){
+        println("Recursive $value")
+        if (value > 0){
+            display(value - 1)      // tanpa embel2 operasi lain "display(value - 1) * 5"
+        }
+    }
+
+    display(10000)
+
+    // =========================================
+
+    // GIMANA CARA MEMBUAT FACTORIAL DENGAN MENGGUNAKAN TAIL RECURSIVE?
+
+    // FACTORIAL RECURSIVE BIASA
+
+    fun factorialRecursive(value: Int): Int{
+        return when (value){
+            1 -> 1
+            else -> value * factorialRecursive(value - 1)
+
+        }
+    }
+
+    println(factorialRecursive(10))
+
+    // FACTORIAL TAIL RECURSIVE
+
+    tailrec fun factorialTail(value: Int, total: Int = 1): Int{
+        return when(value){
+            1 -> total
+            else -> factorialTail(value - 1, total * value)
+        }
+    }
+
+    println(factorialTail(10))
+
+/*
+    Tail Recursive Factorial
+
+    factorialTail(5, 1)
+    factorialTail(4, 5)
+    factorialTail(3, 20)
+    factorialTail(2, 60)
+    factorialTail(1, 120)
+    120
+
+ */
+
+}
