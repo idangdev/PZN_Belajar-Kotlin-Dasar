@@ -34,6 +34,10 @@ fun String.hello(): String{
 }
 fun String.printHello(): Unit = println("Hello $this")
 
+fun Int.kaliDua(): Int {
+    return this * 2
+}
+
 fun main() {
     val name = "Eko"
     println(name.hello())
@@ -41,5 +45,7 @@ fun main() {
     name.printHello()
 
     "Kurniawan".printHello()
+
+    println(kaliDua(5))
 }
 

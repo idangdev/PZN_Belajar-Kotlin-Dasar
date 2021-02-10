@@ -45,7 +45,7 @@ fun main(){
  */
 
 infix fun String.to(type: String): String{
-    if (type == "UP"){
+    if(type == "UP"){
         return this.toUpperCase()
     }else{
         return this.toLowerCase()
