@@ -38,6 +38,10 @@ fun Int.kaliDua(): Int {
     return this * 2
 }
 
+fun Int.kaliTiga(): Int{
+    return this * 3
+}
+
 fun main() {
     val name = "Eko"
     println(name.hello())
@@ -47,5 +51,7 @@ fun main() {
     "Kurniawan".printHello()
 
     println(kaliDua(5))
+
+    4.kaliTiga()
 }
 
