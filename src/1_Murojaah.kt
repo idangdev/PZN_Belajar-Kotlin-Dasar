@@ -1,12 +1,24 @@
-tailrec fun tailFactorialLoop(value: Int, total: Int = 1): Int{
-    return when(value){
-        1 -> total
-        else -> tailFactorialLoop(value - 1, total * value)
-    }
-}
-
 fun main() {
 
-    println(tailFactorialLoop(10))
+    fun hello(name: String, transformer: (String) -> String): String{
+        val nameTransform = transformer(name)
+        return nameTransform
+    }
+
+    val toUpper = fun(name: String): String{
+        if (name == ""){
+            return "WOYYY"
+        }else{
+            return "${name.toUpperCase()}"
+        }
+    }
+
+    println(hello("Wildan", fun(name: String): String{
+        if(name == ""){
+            return "WOOOOY"
+        }else{
+            return name.toUpperCase()
+        }
+    }))
 
 }
